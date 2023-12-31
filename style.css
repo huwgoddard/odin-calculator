@@ -4,14 +4,22 @@ body {
 
 #buttons {
     background-color: beige;
-    padding: 20px;
     display: flex;
     flex-wrap: wrap;
     width: 200px;
+    justify-content: space-evenly;
 }
 
 .button {
     margin: 15px;
+}
+
+#zero {
+    margin-left: auto;
+}
+
+#÷ {
+    margin-left: auto;
 }
 
 
