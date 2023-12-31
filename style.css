@@ -15,12 +15,16 @@ body {
 }
 
 #zero {
-    margin-left: auto;
-}
+/*     margin-left: auto;
+ */}
 
 #÷ {
     margin-left: auto;
 }
+/* 
+#equals {
+    flex-basis: 100%;
+} */
 
 
 
