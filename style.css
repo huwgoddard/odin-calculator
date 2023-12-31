@@ -2,6 +2,11 @@ body {
     background-color: paleturquoise;
 }
 
+#display {
+    background-color: pink;
+    width: 200px;
+}
+
 #buttons {
     background-color: beige;
     display: flex;

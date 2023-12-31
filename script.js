@@ -14,7 +14,6 @@ function divide(a, b) {
     return a / b;
 }
 
-
 function operate(firstNum, operator, secondNum) {
     if (operator==='+') {
         return add(firstNum, secondNum);
@@ -34,3 +33,13 @@ let firstNum = 0;
 let operator = undefined;
 let secondNum = undefined;
 
+let display = document.querySelector('#display')
+
+let numButtons = document.querySelectorAll('.number');
+
+function updateDisplay(e) {
+    display.textContent+=e.target.textContent;
+}
+
+Array.from(numButtons).forEach( 
+    btn => { btn.addEventListener('click', updateDisplay) })
