@@ -22,6 +22,9 @@ function operate(firstNum, operator, secondNum) {
     } else if (operator==='×') {
         return multiply(firstNum, secondNum);
     } else if (operator==='÷') {
+        if (secondNum===0) {
+            return "i pity the fool who tries to divide by zero"
+        }
         return divide(firstNum, secondNum);
     } else {
         console.log("operate error");
@@ -62,9 +65,10 @@ Array.from(opButtons).forEach(
 
 function equals(e) {
     if (firstNum && operator) {
-        secondNum=parseInt(display.textContent);
+        secondNum = parseInt(display.textContent);
         let result = operate(firstNum,operator,secondNum);
-        display.textContent=result;
+        display.textContent = result;
+        secondNum=undefined;
     }
 }
 
