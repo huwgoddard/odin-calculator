@@ -28,7 +28,7 @@ function operate(firstNum, operator, secondNum) {
     }
 }
 
-let firstNum = 0;
+let firstNum = undefined;
 let operator = undefined;
 let secondNum = undefined;
 let newNum = false;
@@ -36,7 +36,7 @@ let newNum = false;
 let display = document.querySelector('#display')
 let numButtons = document.querySelectorAll('.number');
 let opButtons = document.querySelectorAll('.operator');
-
+let equalButton = document.querySelector('#equals')
 
 function updateDisplay(e) {
     if (operator && newNum) {
@@ -46,18 +46,32 @@ function updateDisplay(e) {
     display.textContent+=e.target.textContent;
 }
 
-function setOperator(e) {
-    operator=e.target.textContent;
-    newNum=true;
-}
-
 Array.from(numButtons).forEach( 
     btn => { btn.addEventListener('click', updateDisplay) }
 )
 
+function setOperator(e) {
+    operator=e.target.textContent;
+    newNum=true;
+    firstNum=parseInt(display.textContent);
+}
+
 Array.from(opButtons).forEach(
     btn => { btn.addEventListener('click', setOperator) }
 )
+
+function equals(e) {
+    if (firstNum && operator) {
+        secondNum=parseInt(display.textContent);
+        let result = operate(firstNum,operator,secondNum);
+        display.textContent=result;
+    }
+}
+
+equalButton.addEventListener('click', equals);
+
+
+
 
 
 
