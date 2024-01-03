@@ -1,3 +1,8 @@
+
+//light up the operator button that's in effect?
+
+//add clear button
+
 function add(a, b) {
     return a + b;
 }
@@ -15,6 +20,8 @@ function divide(a, b) {
 }
 
 function operate(firstNum, operator, secondNum) {
+    firstNum=parseInt(firstNum);
+    secondNum=parseInt(secondNum);
     if (operator==='+') {
         return add(firstNum, secondNum);
     } else if (operator==='-') {
@@ -27,14 +34,13 @@ function operate(firstNum, operator, secondNum) {
         }
         return divide(firstNum, secondNum);
     } else {
-        console.log("operate error");
+        console.log("operate error", firstNum, operator, secondNum);
     }
 }
 
 let firstNum = undefined;
 let operator = undefined;
-let secondNum = undefined;
-let newNum = false;
+let newNum = true;
 
 let display = document.querySelector('#display');
 let numButtons = document.querySelectorAll('.number');
@@ -42,60 +48,89 @@ let opButtons = document.querySelectorAll('.operator');
 let equalButton = document.querySelector('#equals');
 let clearButton = document.querySelector('#clear');
 
-function updateDisplay(e) {
-    if (operator && newNum) {
+function clickClear(e) {
+    display.textContent='';
+    firstNum=undefined;
+    operator=undefined;
+    newNum=true;
+}
+
+function clickNumber(e) {
+    if (newNum) {
         display.textContent='';
-        newNum = false;
     }
     display.textContent+=e.target.textContent;
+    newNum=false;
 }
 
-
-function setOperator(e) {
+function clickEquals(e) {
     if (firstNum && operator) {
-        equals();
-    } else {
-        firstNum=parseInt(display.textContent);
-        operator=e.target.textContent;
-        newNum=true;
-    }
-}
-
-
-function equals(e) {
-    if (firstNum && operator) {
-        secondNum = parseInt(display.textContent);
-        let result = operate(firstNum,operator,secondNum);
-        display.textContent = result;
+        let secondNum=display.textContent;
+        let result=operate(firstNum,operator,secondNum);
+        display.textContent=result;
         firstNum=result;
-        secondNum=undefined;
         operator=undefined;
         newNum=true;
     }
 }
 
-function clear(e) {
-    display.textContent='';
-    firstNum=undefined;
-    operator=undefined;
-    secondNum=undefined;
+function clickOperator(e) {
+    if (!firstNum) {
+        firstNum=display.textContent;
+    }
+    operator=e.target.textContent;
+    newNum=true;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+/*
+function clickEquals(e) {
+    if (firstNum && operator) {
+        let secondNum=display.textContent;
+        let result=operate(firstNum,operator,secondNum);
+        display.textContent=result;
+        firstNum=result;
+        newNum=true;
+    }
+}
+
+
+function clickOperator(e) {
+    newNum=true;
+    if (firstNum) {
+        let secondNum = display.textContent;
+        result=operate(firstNum,operator,secondNum);
+        display.textContent=result;
+        firstNum=result;
+        operator=e.target.textContent;
+    } else {
+        firstNum=display.textContent;
+        operator=e.target.textContent;
+    }
+}
+
+*/
+
 Array.from(numButtons).forEach( 
-    btn => { btn.addEventListener('click', updateDisplay) }
+    btn => { btn.addEventListener('click', clickNumber) }
 )
 
 Array.from(opButtons).forEach(
-    btn => { btn.addEventListener('click', setOperator) }
+    btn => { btn.addEventListener('click', clickOperator) }
     )
     
-equalButton.addEventListener('click', equals);
+equalButton.addEventListener('click', clickEquals);
 
-clearButton.addEventListener('click', clear);
+clearButton.addEventListener('click', clickClear);
 
     
-
-
-//light up the operator button that's in effect?
-
-//add clear button
