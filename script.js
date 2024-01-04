@@ -75,12 +75,27 @@ function clickEquals(e) {
 }
 
 function clickOperator(e) {
-    if (!firstNum) {
+    if (firstNum && operator) {
+        let secondNum = display.textContent;
+        let result=operate(firstNum,operator,secondNum);
+        display.textContent=result;
+        firstNum=result;
+        newNum=true;
+        operator=e.target.textContent;
+    } else if (firstNum && !operator) {
+        operator=e.target.textContent;
+        newNum=true;
+    } else if (!firstNum && !operator) {
         firstNum=display.textContent;
+        operator=e.target.textContent;
+        newNum=true;
+    } else {
+        console.log("clickOperator error")
     }
-    operator=e.target.textContent;
-    newNum=true;
 }
+
+
+// !!! NEWOPERATOR VARIABLE??? !!!
 
 
 
