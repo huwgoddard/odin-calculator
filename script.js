@@ -20,8 +20,8 @@ function divide(a, b) {
 }
 
 function operate(firstNum, operator, secondNum) {
-    firstNum=parseInt(firstNum);
-    secondNum=parseInt(secondNum);
+    firstNum=parseFloat(firstNum);
+    secondNum=parseFloat(secondNum);
     if (operator==='+') {
         return add(firstNum, secondNum);
     } else if (operator==='-') {
@@ -47,7 +47,8 @@ let numButtons = document.querySelectorAll('.number');
 let opButtons = document.querySelectorAll('.operator');
 let equalButton = document.querySelector('#equals');
 let clearButton = document.querySelector('#clear');
-let backspaceButton = document.querySelector('#backspace')
+let backspaceButton = document.querySelector('#backspace');
+let decimalButton = document.querySelector('#decimal');
 
 function clickClear(e) {
     display.textContent='0';
@@ -99,6 +100,14 @@ function clickBackspace(e) {
     display.textContent=display.textContent.slice(0,display.textContent.length-1)
 }
 
+function clickDecimal(e) {
+    if (display.textContent.includes(".")) {
+
+    } else {
+        display.textContent+="."
+    }
+}
+
 Array.from(numButtons).forEach( 
     btn => { btn.addEventListener('click', clickNumber) }
 )
@@ -112,5 +121,7 @@ equalButton.addEventListener('click', clickEquals);
 clearButton.addEventListener('click', clickClear);
 
 backspaceButton.addEventListener('click', clickBackspace)
+
+decimalButton.addEventListener('click', clickDecimal);
 
 
