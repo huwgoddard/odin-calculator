@@ -1,57 +1,52 @@
 body {
-    background-color: paleturquoise;
+    background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 #main-container {
-    background-color: palegoldenrod;
+    background-color: white;
     display: flex;
     flex-wrap: wrap;
     max-width: 200px;
     justify-content: center;
-    border: 2px;
-    border-color: black;
-    border-style: solid;
-    box-shadow: 5px 10px 20px black;
+    border: 2px solid black;
+    box-shadow: 5px 10px black;
 }
 
 #display {
-    background-color: paleturquoise;
+    background-color: white;
     height: 50px;
-    min-width: 180px;
-    max-width: 180px;
+    min-width: 170px;
+    max-width: 170px;
     line-height: 50px;
     text-align: right;
     font-size: 40px;
     font-family: sans-serif;
     border: 2px solid black;
     box-shadow: 0px 2px;
+    margin: 20px
 }
 
 #buttons {
     max-width: 200px;
     display: flex;
     flex-wrap: wrap;
-    padding: 10px;
+    padding: 0px 10px 20px 10px;
     justify-content: center;
 }
 
 .button {
     font-family: sans-serif;
-    background-color: paleturquoise;
+    background-color: white;
     width: 40px;
     height: 50px;
     margin: 2px;
     font-size: 40px;
     text-align: center;
     box-shadow: 0px 2px;
-}
-
-.break {
-    flex-basis: 100%;
-    height: 0px;
+    border: 2px solid black;
 }
 
 
