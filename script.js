@@ -47,6 +47,7 @@ let numButtons = document.querySelectorAll('.number');
 let opButtons = document.querySelectorAll('.operator');
 let equalButton = document.querySelector('#equals');
 let clearButton = document.querySelector('#clear');
+let backspaceButton = document.querySelector('#backspace')
 
 function clickClear(e) {
     display.textContent='0';
@@ -94,47 +95,9 @@ function clickOperator(e) {
     }
 }
 
-
-// !!! NEWOPERATOR VARIABLE??? !!!
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-function clickEquals(e) {
-    if (firstNum && operator) {
-        let secondNum=display.textContent;
-        let result=operate(firstNum,operator,secondNum);
-        display.textContent=result;
-        firstNum=result;
-        newNum=true;
-    }
+function clickBackspace(e) {
+    display.textContent=display.textContent.slice(0,display.textContent.length-1)
 }
-
-
-function clickOperator(e) {
-    newNum=true;
-    if (firstNum) {
-        let secondNum = display.textContent;
-        result=operate(firstNum,operator,secondNum);
-        display.textContent=result;
-        firstNum=result;
-        operator=e.target.textContent;
-    } else {
-        firstNum=display.textContent;
-        operator=e.target.textContent;
-    }
-}
-
-*/
 
 Array.from(numButtons).forEach( 
     btn => { btn.addEventListener('click', clickNumber) }
@@ -142,10 +105,12 @@ Array.from(numButtons).forEach(
 
 Array.from(opButtons).forEach(
     btn => { btn.addEventListener('click', clickOperator) }
-    )
+)
     
 equalButton.addEventListener('click', clickEquals);
 
 clearButton.addEventListener('click', clickClear);
 
-    
+backspaceButton.addEventListener('click', clickBackspace)
+
+
