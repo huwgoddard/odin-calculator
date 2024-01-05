@@ -1,36 +1,57 @@
 body {
     background-color: paleturquoise;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#main-container {
+    background-color: palegoldenrod;
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 200px;
+    justify-content: center;
+    border: 2px;
+    border-color: black;
+    border-style: solid;
+    box-shadow: 5px 10px 20px black;
 }
 
 #display {
-    background-color: pink;
-    width: 200px;
-    height: 20px;
+    background-color: paleturquoise;
+    height: 50px;
+    min-width: 180px;
+    max-width: 180px;
+    line-height: 50px;
+    text-align: right;
+    font-size: 40px;
+    font-family: sans-serif;
+    border: 2px solid black;
+    box-shadow: 0px 2px;
 }
 
 #buttons {
-    background-color: beige;
+    max-width: 200px;
     display: flex;
     flex-wrap: wrap;
-    width: 200px;
-    justify-content: space-evenly;
+    padding: 10px;
+    justify-content: center;
 }
 
 .button {
-    margin: 15px;
+    font-family: sans-serif;
+    background-color: paleturquoise;
+    width: 40px;
+    height: 50px;
+    margin: 2px;
+    font-size: 40px;
+    text-align: center;
+    box-shadow: 0px 2px;
 }
 
-/* #zero {
-    margin-left: auto;
-}
-
-#÷ {
-    margin-left: auto;
-}
-
-#equals {
+.break {
     flex-basis: 100%;
-} */
-
+    height: 0px;
+}
 
 

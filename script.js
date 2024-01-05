@@ -49,7 +49,7 @@ let equalButton = document.querySelector('#equals');
 let clearButton = document.querySelector('#clear');
 
 function clickClear(e) {
-    display.textContent='';
+    display.textContent='0';
     firstNum=undefined;
     operator=undefined;
     newNum=true;
