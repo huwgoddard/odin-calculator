@@ -74,16 +74,10 @@ function clickClear(e) {
 }
 
 function clickNumber(e, k=undefined) {
-    let v = undefined;
-    if (k) {
-        v=k
-    } else {
-        v=e.target.textContent
-    }
     if (newNum) {
         display.textContent='';
     }
-    updateDisplay(v);
+    updateDisplay(e.target.textContent);
     newNum=false;
 }
 
@@ -148,13 +142,8 @@ backspaceButton.addEventListener('click', clickBackspace)
 decimalButton.addEventListener('click', clickDecimal);
 
 document.addEventListener('keydown', function(e) {
-/*     if (e.key==1) {
-        clickNumber(e, e.key)
-    } else if (e.key==2) {
-        clickNumber(e, e.key)
-    } */
-    if (e.key in [0,1,2,3,4,5,6,7,8,9]) {
-        clickNumber(e, e.key)
+    console.log(e.target)
+    if (e.target.key==1) {
+        console.log("one")
     }
-
 })
