@@ -1,8 +1,6 @@
 
 //light up the operator button that's in effect?
 
-//add clear button
-
 function add(a, b) {
     return a + b;
 }
@@ -22,20 +20,22 @@ function divide(a, b) {
 function operate(firstNum, operator, secondNum) {
     firstNum=parseFloat(firstNum);
     secondNum=parseFloat(secondNum);
+    let result = undefined;
     if (operator==='+') {
-        return add(firstNum, secondNum);
+        result = add(firstNum, secondNum);
     } else if (operator==='-') {
-        return subtract(firstNum, secondNum);
+        result = subtract(firstNum, secondNum);
     } else if (operator==='×') {
-        return multiply(firstNum, secondNum);
+        result = multiply(firstNum, secondNum);
     } else if (operator==='÷') {
         if (secondNum===0) {
             return "pity the foo who divides by zero"
         }
-        return divide(firstNum, secondNum);
+        result = divide(firstNum, secondNum);
     } else {
         console.log("operate error", firstNum, operator, secondNum);
     }
+    return result;
 }
 
 let firstNum = undefined;
@@ -50,6 +50,14 @@ let clearButton = document.querySelector('#clear');
 let backspaceButton = document.querySelector('#backspace');
 let decimalButton = document.querySelector('#decimal');
 
+function updateDisplay(value) {
+    if ((display.textContent+value).length > 7) {
+        console.log('too long');
+    } else {
+        display.textContent+=value;
+    }
+}
+
 function clickClear(e) {
     display.textContent='0';
     firstNum=undefined;
@@ -61,7 +69,7 @@ function clickNumber(e) {
     if (newNum) {
         display.textContent='';
     }
-    display.textContent+=e.target.textContent;
+    updateDisplay(e.target.textContent);
     newNum=false;
 }
 
@@ -69,6 +77,11 @@ function clickEquals(e) {
     if (firstNum && operator) {
         let secondNum=display.textContent;
         let result=operate(firstNum,operator,secondNum);
+        console.log(result.toString().length)
+        display.textContent='';
+        if (result.toString().length > 7) {
+            
+        }
         display.textContent=result;
         firstNum=result;
         operator=undefined;
@@ -77,6 +90,9 @@ function clickEquals(e) {
 }
 
 function clickOperator(e) {
+    if (operator !== e.target.textContent) {
+        // if user changes operator when chaining
+    }
     if (firstNum && operator) {
         let secondNum = display.textContent;
         let result=operate(firstNum,operator,secondNum);
@@ -101,10 +117,8 @@ function clickBackspace(e) {
 }
 
 function clickDecimal(e) {
-    if (display.textContent.includes(".")) {
-
-    } else {
-        display.textContent+="."
+    if (!display.textContent.includes(".")) {
+        display.textContent+=".'"
     }
 }
 
@@ -114,7 +128,7 @@ Array.from(numButtons).forEach(
 
 Array.from(opButtons).forEach(
     btn => { btn.addEventListener('click', clickOperator) }
-)
+) 
     
 equalButton.addEventListener('click', clickEquals);
 
