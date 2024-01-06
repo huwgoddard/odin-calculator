@@ -39,10 +39,8 @@ function operate(firstNum, operator, secondNum) {
         return ">999999"
     } else if (result.toString().length > 7 
                 && result.toString().includes(".")) {
-        // find how many numbers to left of decimal place: n
-        // round decimal to 7-(n+1)
-        console.log(result.toString().indexOf("."))
-        return result
+        let decimal = 7-(result.toString().indexOf(".")+1)
+        return result.toFixed(decimal)
     } else {
         return result
     }
