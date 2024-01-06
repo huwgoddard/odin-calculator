@@ -29,13 +29,23 @@ function operate(firstNum, operator, secondNum) {
         result = multiply(firstNum, secondNum);
     } else if (operator==='÷') {
         if (secondNum===0) {
-            return "pity the foo who divides by zero"
+            return "🙁"
         }
         result = divide(firstNum, secondNum);
     } else {
         console.log("operate error", firstNum, operator, secondNum);
     }
-    return result;
+    if (result > 999999) {
+        return ">999999"
+    } else if (result.toString().length > 7 
+                && result.toString().includes(".")) {
+        // find how many numbers to left of decimal place: n
+        // round decimal to 7-(n+1)
+        console.log(result.toString().indexOf("."))
+        return result
+    } else {
+        return result
+    }
 }
 
 let firstNum = undefined;
@@ -77,11 +87,6 @@ function clickEquals(e) {
     if (firstNum && operator) {
         let secondNum=display.textContent;
         let result=operate(firstNum,operator,secondNum);
-        console.log(result.toString().length)
-        display.textContent='';
-        if (result.toString().length > 7) {
-            
-        }
         display.textContent=result;
         firstNum=result;
         operator=undefined;
