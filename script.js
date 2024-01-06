@@ -93,10 +93,10 @@ function clickEquals(e) {
 }
 
 function clickOperator(e) {
-    if (operator !== e.target.textContent) {
-        // if user changes operator when chaining
-    }
-    if (firstNum && operator) {
+    if (operator && operator !== e.target.textContent) {
+        operator=e.target.textContent;
+        newNum=true;
+    } else if (firstNum && operator) {
         let secondNum = display.textContent;
         let result=operate(firstNum,operator,secondNum);
         display.textContent=result;
