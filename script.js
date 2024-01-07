@@ -163,8 +163,8 @@ decimalButton.addEventListener('click', clickDecimal);
 window.addEventListener('keydown', function(e) {
     if (e.key in [0,1,2,3,4,5,6,7,8,9]) {
         clickNumber(e, e.key)
-    } else if (e.key=="=") {
-        clickEquals(e, e.key)
+    } else if (e.key=="=" || e.key=='Enter') {
+        clickEquals(e, "=")
     } else if (e.key=='-') {
         clickOperator(e, e.key)
     } else if (e.key=='*') {
