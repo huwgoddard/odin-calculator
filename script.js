@@ -112,7 +112,6 @@ function clickOperator(e, k=undefined) {
     } else {
         v=e.target.textContent
     }
-    console.log("clickOp", "e", e, "k", k, "v", v)
     if (operator && operator !== v) {
         operator=v;
         newNum=true;
@@ -162,7 +161,6 @@ backspaceButton.addEventListener('click', clickBackspace)
 decimalButton.addEventListener('click', clickDecimal);
 
 window.addEventListener('keydown', function(e) {
-    console.log(e.key)
     if (e.key in [0,1,2,3,4,5,6,7,8,9]) {
         clickNumber(e, e.key)
     } else if (e.key=="=") {
@@ -174,5 +172,11 @@ window.addEventListener('keydown', function(e) {
     } else if (e.key=='/') {
         e.preventDefault()
         clickOperator(e, "÷")
+    } else if (e.key=='+') {
+        clickOperator(e, "+")
+    } else if (e.key=='Backspace') {
+        clickBackspace(e)
+    } else if (e.key=='c' || e.key=='C') {
+        clickClear(e)
     }
 })
