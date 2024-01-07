@@ -169,5 +169,10 @@ window.addEventListener('keydown', function(e) {
         clickEquals(e, e.key)
     } else if (e.key=='-') {
         clickOperator(e, e.key)
+    } else if (e.key=='*') {
+        clickOperator(e, "×")
+    } else if (e.key=='/') {
+        e.preventDefault()
+        clickOperator(e, "÷")
     }
 })
