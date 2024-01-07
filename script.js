@@ -73,6 +73,24 @@ function clickClear(e) {
     newNum=true;
 }
 
+
+function clickEquals(e, k=undefined) {
+    let v=undefined;
+    if (k) {
+        v=k
+    } else {
+        v=e.target.textContent
+    }
+    if (firstNum && operator) {
+        let secondNum=display.textContent;
+        let result=operate(firstNum,operator,secondNum);
+        display.textContent=result;
+        firstNum=result;
+        operator=undefined;
+        newNum=true;
+    }
+}
+
 function clickNumber(e, k=undefined) {
     let v = undefined;
     if (k) {
@@ -87,20 +105,16 @@ function clickNumber(e, k=undefined) {
     newNum=false;
 }
 
-function clickEquals(e) {
-    if (firstNum && operator) {
-        let secondNum=display.textContent;
-        let result=operate(firstNum,operator,secondNum);
-        display.textContent=result;
-        firstNum=result;
-        operator=undefined;
-        newNum=true;
-    }
-}
-
 function clickOperator(e, k=undefined) {
-    if (operator && operator !== e.target.textContent) {
-        operator=e.target.textContent;
+    let v=undefined;
+    if (k) {
+        v=k 
+    } else {
+        v=e.target.textContent
+    }
+    console.log("clickOp", "e", e, "k", k, "v", v)
+    if (operator && operator !== v) {
+        operator=v;
         newNum=true;
     } else if (firstNum && operator) {
         let secondNum = display.textContent;
@@ -108,13 +122,13 @@ function clickOperator(e, k=undefined) {
         display.textContent=result;
         firstNum=result;
         newNum=true;
-        operator=e.target.textContent;
+        operator=v;
     } else if (firstNum && !operator) {
-        operator=e.target.textContent;
+        operator=v;
         newNum=true;
     } else if (!firstNum && !operator) {
         firstNum=display.textContent;
-        operator=e.target.textContent;
+        operator=v;
         newNum=true;
     } else {
         console.log("clickOperator error")
@@ -147,14 +161,13 @@ backspaceButton.addEventListener('click', clickBackspace)
 
 decimalButton.addEventListener('click', clickDecimal);
 
-document.addEventListener('keydown', function(e) {
-/*     if (e.key==1) {
-        clickNumber(e, e.key)
-    } else if (e.key==2) {
-        clickNumber(e, e.key)
-    } */
+window.addEventListener('keydown', function(e) {
+    console.log(e.key)
     if (e.key in [0,1,2,3,4,5,6,7,8,9]) {
         clickNumber(e, e.key)
+    } else if (e.key=="=") {
+        clickEquals(e, e.key)
+    } else if (e.key=='-') {
+        clickOperator(e, e.key)
     }
-
 })
